@@ -15,7 +15,8 @@ export const fetchTransactions = async (walletAddress) => {
     return false
   }
 
-  const provider = new ethers.providers.EtherscanProvider()
+  //Change me into an ENV var later => 
+  const provider = new ethers.providers.EtherscanProvider(null, 'A998AAAQK97YQW2CGGQ2HF4UN9VEI3ISVT')
 
   return await provider.getHistory(walletAddress)
 }
