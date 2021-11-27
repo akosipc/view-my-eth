@@ -11,12 +11,17 @@ export const connectWallet = async () => {
 }
 
 export const fetchTransactions = async (walletAddress) => {
+  // I wonder if we should try to raise an exception when the walletAddress is null
   if (walletAddress === null) {
-    return false
+    return []
   }
 
-  //Change me into an ENV var later => 
+  //Change me into an ENV var later
   const provider = new ethers.providers.EtherscanProvider(null, 'A998AAAQK97YQW2CGGQ2HF4UN9VEI3ISVT')
 
   return await provider.getHistory(walletAddress)
+}
+
+export const formatHexToDecimal = ({ _hex }) => {
+  return ethers.utils.formatEther(_hex)
 }
