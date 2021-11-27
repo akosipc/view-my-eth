@@ -22,6 +22,10 @@ export const fetchTransactions = async (walletAddress) => {
   return await provider.getHistory(walletAddress)
 }
 
-export const formatHexToDecimal = ({ _hex }) => {
-  return ethers.utils.formatEther(_hex)
+export const formatHexToDecimal = (hex) => {
+  return ethers.utils.formatEther(hex)
+}
+
+export const etherscanProvider = () => {
+  return new ethers.providers.EtherscanProvider(null, 'A998AAAQK97YQW2CGGQ2HF4UN9VEI3ISVT')
 }

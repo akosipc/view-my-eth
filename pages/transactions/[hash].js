@@ -1,36 +1,14 @@
-import { useState, useEffect } from 'react'
+import useSWR from 'swr'
+import { useState } from 'react'
 
-import { useWallet } from '../../src/contexts/WalletContext'
-import { connectWallet, fetchTransactions, formatHexToDecimal } from '../../src/helpers/ethers'
+import { fetchTransaction } from '../../src/helpers/fetcher'
+import { formatHexToDecimal } from '../../src/helpers/ethers'
 
 const Transaction = ({ hash }) => {
-  const {walletAddress, setWalletAddress} = useWallet()
-  const {transactions, setTransactions} = useWallet()
+  const { transaction, isLoading, isError } = fetchTransaction(hash)
 
-  const [transaction, setTransaction] = useState(null)
-
-  
-  useEffect(() => {
-    let settingWalletAddress = async () => { setWalletAddress(await connectWallet()) }
-    settingWalletAddress()
-  }, [setWalletAddress])
-
-  useEffect(() => {
-    let settingTransactions = async () => { setTransactions(await fetchTransactions(walletAddress)) }
-    settingTransactions()
-  }, [walletAddress])
-
-  useEffect(() => {
-    setTransaction(transactions.find((tx => { return tx.hash === hash })))
-  }, [transactions])
-
-  if (transaction === undefined || transaction === null) {
-    return (
-      <div/>
-    )
-  }
-
-  console.log(transaction)
+  if (isLoading) { return '' }
+  if (isError) { return '' }
 
   return (
     <>
@@ -38,7 +16,7 @@ const Transaction = ({ hash }) => {
       <br/>
       Status: { }
       <br/>
-      Block: { transaction.blockNumber }
+      Block: { formatHexToDecimal(transaction.blockNumber) }
 
       <br/>
       Block Confirmations: { transaction.confirmations }
