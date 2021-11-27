@@ -15,7 +15,7 @@ const Home = () => {
     }
 
     settingTransactions()
-  }, [walletAddress])
+  }, [walletAddress, setTransactions])
   
   useEffect(() => {
     let settingWalletAddress = async () => {
