@@ -3,7 +3,7 @@ import React from 'react'
 import Link from 'next/link'
 import MetaContent from './MetaContent'
 
-export default {
+const MetaContentStory = {
   title: 'Components/MetaContent',
   component: MetaContent
 }
@@ -52,3 +52,6 @@ export const withLink = () => {
     </MetaContent>
   )
 }
+
+
+export default MetaContentStory

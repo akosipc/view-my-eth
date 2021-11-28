@@ -2,11 +2,6 @@ import React from 'react'
 
 import MetaLabel from './MetaLabel'
 
-export default {
-  title: 'Components/MetaLabel',
-  component: MetaLabel
-}
-
 export const Default = () => {
   return (
     <MetaLabel
@@ -15,3 +10,10 @@ export const Default = () => {
     />
   )
 }
+
+const MetaLabelStory = {
+  title: 'Components/MetaLabel',
+  component: MetaLabel
+}
+
+export default MetaLabelStory

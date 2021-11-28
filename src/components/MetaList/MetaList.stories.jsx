@@ -7,7 +7,7 @@ import MetaItem from '../MetaItem/MetaItem'
 import MetaLabel from '../MetaLabel/MetaLabel'
 import MetaContent from '../MetaContent/MetaContent'
 
-export default {
+const MetaListStory = {
   title: 'Components/MetaList',
   component: MetaList
 }
@@ -54,3 +54,5 @@ export const Default = () => {
     </MetaList>
   )
 }
+
+export default MetaListStory

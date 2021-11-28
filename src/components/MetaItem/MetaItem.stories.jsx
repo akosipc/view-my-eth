@@ -4,7 +4,7 @@ import MetaItem from './MetaItem'
 import MetaLabel from '../MetaLabel/MetaLabel'
 import MetaContent from '../MetaContent/MetaContent'
 
-export default {
+const MetaItemStory = {
   title: 'Components/MetaItem',
   component: MetaItem
 }
@@ -22,3 +22,5 @@ export const Default = () => {
     </MetaItem>
   )
 }
+
+export default MetaItemStory
