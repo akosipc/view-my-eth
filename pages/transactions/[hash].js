@@ -1,6 +1,8 @@
-import Link from 'next/link'
-import { useState } from 'react'
-import { Divider } from '@chakra-ui/react'
+import { Link as NextLink } from 'next'
+import { 
+  Link,
+  Divider 
+} from '@chakra-ui/react'
 
 import { fetchTransaction } from '../../src/helpers/fetcher'
 import { formatHexToDecimal } from '../../src/helpers/ethers'
@@ -42,7 +44,11 @@ const Transaction = ({ hash }) => {
             <MetaLabel text='Block:' />
 
             <MetaContent>
-              <Link href={ `/blocks/${transaction.blockHash}` }>
+              <Link 
+                as={ NextLink }
+                href={ `/blocks/${transaction.blockHash}` }
+                color='blue.500'
+              >
                 { formatHexToDecimal(transaction.blockNumber) }
               </Link>
             </MetaContent>
@@ -64,7 +70,11 @@ const Transaction = ({ hash }) => {
               text={ transaction.from }
               clipboardable
             >
-              <Link href={ `/wallets/${transaction.from}` }>
+              <Link 
+                as={ NextLink }
+                href={ `/wallets/${transaction.from}` }
+                color='blue.500'
+              >
                 { transaction.from }
               </Link>
             </MetaContent>
@@ -77,7 +87,11 @@ const Transaction = ({ hash }) => {
               text={ transaction.to }
               clipboardable
             >
-              <Link href={ `/wallets/${transaction.to}` }>
+              <Link 
+                as={ NextLink }
+                href={ `/wallets/${transaction.to}` }
+                color='blue.500'
+              >
                 { transaction.to }
               </Link>
             </MetaContent>
