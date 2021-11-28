@@ -49,5 +49,5 @@ export default MetaLabel
 
 MetaLabel.propTypes = {
   text: PropTypes.string.isRequired,
-  helper: PropTypes.string.isRequired
+  helper: PropTypes.string
 }

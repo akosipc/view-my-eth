@@ -1,8 +1,12 @@
-import useSWR from 'swr'
+import Link from 'next/link'
 import { useState } from 'react'
+import { Divider } from '@chakra-ui/react'
 
 import { fetchTransaction } from '../../src/helpers/fetcher'
 import { formatHexToDecimal } from '../../src/helpers/ethers'
+
+import { Panel, PanelHeader, PanelBody } from '../../src/components/Panel'
+import { MetaList, MetaItem, MetaLabel, MetaContent, SuccessBlock } from '../../src/components/MetaList'
 
 const Transaction = ({ hash }) => {
   const { transaction, isLoading, isError } = fetchTransaction(hash)
@@ -11,42 +15,98 @@ const Transaction = ({ hash }) => {
   if (isError) { return '' }
 
   return (
-    <>
-      Transaction Hash: { transaction.hash }
-      <br/>
-      Status: { }
-      <br/>
-      Block: { formatHexToDecimal(transaction.blockNumber) }
+    <Panel>
+      <PanelHeader
+        title='Transaction Details'
+      />
+      <PanelBody>
+        <MetaList>
+          <MetaItem>
+            <MetaLabel text='Transaction Hash:' />
 
-      <br/>
-      Block Confirmations: { transaction.confirmations }
-      
-      <br/>
-      TimeStamp: { transaction.timestamp }
+            <MetaContent
+              text={ transaction.hash }
+              clipboardable
+            />
+          </MetaItem>
 
-      <hr/>
+          <MetaItem>
+            <MetaLabel text='Status:' />
 
-      From: { transaction.from }
-      <br/>
-      To: { transaction.to }
+            <MetaContent>
+              <SuccessBlock />
+            </MetaContent>
+          </MetaItem>
 
-      <hr/>
+          <MetaItem>
+            <MetaLabel text='Block:' />
 
-      Value: { formatHexToDecimal(transaction.value) }
+            <MetaContent>
+              <Link href={ `/blocks/${transaction.blockHash}` }>
+                { formatHexToDecimal(transaction.blockNumber) }
+              </Link>
+            </MetaContent>
+          </MetaItem>
 
-      <br/>
-      Transaction Fee:
+          <MetaItem>
+            <MetaLabel text='Timestamp:' />
 
-      <hr/>
+            <MetaContent>
+            </MetaContent>
+          </MetaItem>
 
-      Gas Price: { formatHexToDecimal(transaction.gasPrice) }
+          <Divider my={ 4 }/>
 
-      <br/>
-      Ether Price: 
+          <MetaItem>
+            <MetaLabel text='From:' />
 
+            <MetaContent
+              text={ transaction.from }
+              clipboardable
+            >
+              <Link href={ `/wallets/${transaction.from}` }>
+                { transaction.from }
+              </Link>
+            </MetaContent>
+          </MetaItem>
 
+          <MetaItem>
+            <MetaLabel text='To:' />
 
-    </>
+            <MetaContent
+              text={ transaction.to }
+              clipboardable
+            >
+              <Link href={ `/wallets/${transaction.to}` }>
+                { transaction.to }
+              </Link>
+            </MetaContent>
+          </MetaItem>
+
+          <Divider my={ 4 }/>
+
+          <MetaItem>
+            <MetaLabel text='Value:' />
+
+            <MetaContent
+              text={ formatHexToDecimal(transaction.value) }
+            />
+          </MetaItem>
+
+          <MetaItem>
+            <MetaLabel text='Gas Price:' />
+
+            <MetaContent
+              text={ formatHexToDecimal(transaction.gasPrice) }
+            />
+          </MetaItem>
+
+          <MetaItem>
+            <MetaLabel text='Ether Price:' />
+          </MetaItem>
+        </MetaList>
+      </PanelBody>
+    </Panel>
   )
 }
 

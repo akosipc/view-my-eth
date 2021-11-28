@@ -43,6 +43,7 @@ const MetaContent = ({
       {
         clipboardable &&
           <Button 
+            ml={ 4 }
             onClick={ () => { handleCopyClicked() } } 
             variant="ghost"
             disabled={ copied }
