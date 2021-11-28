@@ -4,23 +4,22 @@ import {
   Divider 
 } from '@chakra-ui/react'
 
-import { fetchTransaction } from '../../src/helpers/fetcher'
+import { fetchTransaction, fetchLatestBlock } from '../../src/helpers/fetcher'
 import { formatHexToDecimal } from '../../src/helpers/ethers'
 
+import { PanelLoader } from '../../src/components/Loader/Loader'
 import { Panel, PanelHeader, PanelBody } from '../../src/components/Panel'
 import { MetaList, MetaItem, MetaLabel, MetaContent, SuccessBlock } from '../../src/components/MetaList'
 
 const Transaction = ({ hash }) => {
-  const { transaction, isLoading, isError } = fetchTransaction(hash)
+  const { transaction, currentBlock, isLoading, isError } = fetchTransaction(hash)
 
-  if (isLoading) { return '' }
+  if (isLoading) { return <PanelLoader panelTitle='Transaction Details'/> }
   if (isError) { return '' }
 
   return (
     <Panel>
-      <PanelHeader
-        title='Transaction Details'
-      />
+      <PanelHeader title='Transaction Details' />
       <PanelBody>
         <MetaList>
           <MetaItem>
@@ -46,10 +45,14 @@ const Transaction = ({ hash }) => {
             <MetaContent>
               <Link 
                 as={ NextLink }
-                href={ `/blocks/${transaction.blockHash}` }
+                href={ `/blocks/${transaction.blockNumber}` }
                 color='blue.500'
               >
                 { formatHexToDecimal(transaction.blockNumber) }
+  
+                &nbsp;
+
+                { formatHexToDecimal(currentBlock) }
               </Link>
             </MetaContent>
           </MetaItem>

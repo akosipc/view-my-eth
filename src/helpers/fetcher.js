@@ -10,12 +10,31 @@ const fetcher = async (url) => {
 export const fetchTransaction = (hash) => {
   const { data, error } = useSWR(`/api/etherscan/tx/${hash}`, fetcher)
 
-  console.log(data)
-
   return {
     isError: error,
     isLoading: !error && !data,
-    transaction: data?.transaction
+    transaction: data?.transaction,
+    currentBlock: data?.latestBlock
+  }
+}
+
+export const fetchBlock = (hash) => {
+  const { data, error } = useSWR(`/api/etherscan/block/${hash}`, fetcher)
+
+  return {
+    block: data?.block,
+    isError: error,
+    isLoading: !error && !data,
+  }
+}
+
+export const fetchLatestBlock = () => {
+  const { data, error } = useSWR(`/api/etherscan/block/latest`, fetcher)
+
+  return {
+    block: data?.latestBlock,
+    isError: error,
+    isLoading: !error && !data,
   }
 }
 
