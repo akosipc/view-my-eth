@@ -1,6 +1,7 @@
 import { Link as NextLink } from 'next'
 import { 
   Link,
+  Badge,
   Divider 
 } from '@chakra-ui/react'
 
@@ -53,11 +54,12 @@ const Transaction = ({ hash }) => {
                 color='blue.500'
               >
                 { formatHexToDecimal(transaction.blockNumber) }
-  
-                &nbsp;
-
-                { formatHexToDecimal(currentBlock) }
               </Link>
+              &nbsp;
+              <Badge colorScheme='green'> 
+                { formatHexToDecimal(currentBlock) } 
+                Confirmations
+              </Badge>
             </MetaContent>
           </MetaItem>
 
