@@ -1,20 +1,25 @@
 import React from 'react'
 import Link from 'next/link'
 
-import MetaList from './MetaList'
+import PanelBody from './PanelBody'
+import MetaList from '../MetaList/MetaList'
 import MetaItem from '../MetaItem/MetaItem'
 import MetaLabel from '../MetaLabel/MetaLabel'
 import MetaContent from '../MetaContent/MetaContent'
 import SuccessBlock from '../MetaContent/SuccessBlock'
 import FailureBlock from '../MetaContent/FailureBlock'
 
-const MetaListStory = {
-  title: 'Components/MetaList',
-  component: MetaList
+import {
+  Divider
+} from '@chakra-ui/react'
+
+const PanelBodyStory = {
+  title: 'Components/PanelBody',
+  component: PanelBody
 }
 
-export const Default = () => {
-  return (
+export const Default = () => (
+  <PanelBody>
     <MetaList>
       <MetaItem>
         <MetaLabel
@@ -39,16 +44,10 @@ export const Default = () => {
         </MetaContent>
       </MetaItem>
 
-      <MetaItem>
-        <MetaLabel
-          text='Status'
-          helper='The status of the transaction.'
-        />
-
-        <MetaContent>
-          <FailureBlock/>
-        </MetaContent>
-      </MetaItem>
+      <Divider 
+        my={ 4 }
+        orientation='horizontal' 
+      />
 
       <MetaItem>
         <MetaLabel
@@ -63,7 +62,8 @@ export const Default = () => {
         </MetaContent>
       </MetaItem>
     </MetaList>
-  )
-}
+  </PanelBody>
+)
 
-export default MetaListStory
+export default PanelBodyStory
+

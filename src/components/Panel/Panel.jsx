@@ -6,7 +6,12 @@ import {
 
 const Panel = ({ children }) => {
   return (
-    <Box>
+    <Box
+      border='1px'
+      boxShadow='md'
+      borderColor='gray.300'
+      borderRadius='8'
+    >
       { children }
     </Box>
   )

@@ -7,8 +7,8 @@ import {
 const PanelBody = ({ children }) => {
   return (
     <Box 
-      px={ 2 }
-      py={ 3 }
+      px={ 4 }
+      py={ 6 }
     >
       { children }
     </Box>
