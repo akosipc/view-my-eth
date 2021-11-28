@@ -15,8 +15,12 @@ const MetaContent = ({
 }) => {
   const [copied, setCopied] = useState(false)
 
-  const copyToClipboard = (text) => {
-    return document.execCommand('copy', true, text)
+  const copyToClipboard = async (text) => {
+    if ('clipboard' in navigator) {
+      return await navigator.clipboard.writeText(text)
+    } else {
+      return document.execCommand('copy', true, text)
+    }
   }
 
   const handleCopyClicked = useCallback(() => {
