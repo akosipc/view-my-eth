@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { css } from '@emotion/react'
 
 import { 
   QuestionOutlineIcon
@@ -8,43 +9,41 @@ import {
 import {
   Box,
   Tag,
+  Flex,
   Text,
   Tooltip
 } from '@chakra-ui/react'
 
 const MetaLabel = ({ text, helper }) => {
   return (
-    <>
+    <Flex 
+      p={ 2 }
+      flexBasis='25%'
+      alignItems='center'
+    >
       <CustomTooltip label={ helper }>
         <QuestionOutlineIcon/>
       </CustomTooltip>
 
-      <Text fontSize="md">
+      <Text 
+        css={css`
+          margin-left: 16px;
+          font-weight: 500;
+        `}
+        fontSize="md">
         { text }
       </Text>
-    </>
+    </Flex>
   )
 }
 
 const CustomTooltip = ({ label, children }) => {
   return (
     <Tooltip label={ label }>
-      <CustomCard>
-        { children }
-      </CustomCard>
+      { children }
     </Tooltip>
   )
 }
-
-const CustomCard = React.forwardRef(({ children, ...rest }, ref) => {
-  return (
-    <Box p="1">
-      <Tag ref={ref} {...rest}>
-        {children}
-      </Tag>
-    </Box>
-  )
-})
 
 export default MetaLabel
 

@@ -7,7 +7,8 @@ module.exports = {
   ],
   "addons": [
     "@storybook/addon-links",
-    "@storybook/addon-essentials"
+    "@storybook/addon-essentials",
+    "@snek-at/storybook-addon-chakra-ui"
   ],
   "framework": "@storybook/react",
   webpackFinal: async (config) => {

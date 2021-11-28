@@ -2,9 +2,9 @@ import React from 'react'
 
 const MetaList = ({ children }) => {
   return (
-    <ul>
+    <>
       { children }
-    </ul>
+    </>
   )
 }
 

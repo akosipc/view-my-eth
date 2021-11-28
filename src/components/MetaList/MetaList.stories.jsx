@@ -1,5 +1,7 @@
 import React from 'react'
 
+import Link from 'next/link'
+
 import MetaList from './MetaList'
 import MetaItem from '../MetaItem/MetaItem'
 import MetaLabel from '../MetaLabel/MetaLabel'
@@ -35,6 +37,19 @@ export const Default = () => {
           text='success'
           success
         />
+      </MetaItem>
+
+      <MetaItem>
+        <MetaLabel
+          text='Block'
+          helper='Number of the block in which the transaction is recorded. Block confirmations indicate how many blocks have been added since the transaction was mined.'
+        />
+
+        <MetaContent>
+          <Link href={ '/' }>
+            13701698
+          </Link>
+        </MetaContent>
       </MetaItem>
     </MetaList>
   )
