@@ -9,7 +9,7 @@ import { formatHexToDecimal } from '../../src/helpers/ethers'
 
 import { PanelLoader } from '../../src/components/Loader/Loader'
 import { Panel, PanelHeader, PanelBody } from '../../src/components/Panel'
-import { MetaList, MetaItem, MetaLabel, MetaContent, SuccessBlock } from '../../src/components/MetaList'
+import { MetaList, MetaItem, MetaLabel, MetaContent, SuccessBlock, FailureBlock } from '../../src/components/MetaList'
 
 const Transaction = ({ hash }) => {
   const { transaction, currentBlock, isLoading, isError } = fetchTransaction(hash)
@@ -35,7 +35,11 @@ const Transaction = ({ hash }) => {
             <MetaLabel text='Status:' />
 
             <MetaContent>
-              <SuccessBlock />
+              {
+                transaction.value === '0x0' ?
+                  <FailureBlock/> :
+                  <SuccessBlock/>
+              }
             </MetaContent>
           </MetaItem>
 
