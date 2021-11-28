@@ -3,11 +3,6 @@ import PropTypes from 'prop-types'
 import { css } from '@emotion/react'
 
 import {
-  CheckIcon,
-  CloseIcon
-} from '@chakra-ui/icons'
-
-import {
   Flex,
   Text,
   Button
@@ -15,8 +10,6 @@ import {
 
 const MetaContent = ({ 
   text, 
-  failed = false,
-  success = false,
   clipboardable = false,
   children
 }) => {
@@ -40,16 +33,9 @@ const MetaContent = ({
       flexBasis='75%'
       alignItems='center'
     >
-      { success && <CheckIcon/> }
-      { failed && <CloseIcon/> }
-
       {
         children ? children : 
-          <Text
-            css={css`
-              margin: 0px 8px;
-            `}
-          >
+          <Text>
             { text }
           </Text>
       }
@@ -72,8 +58,6 @@ const MetaContent = ({
 export default MetaContent
 
 MetaContent.propTypes = {
-  text: PropTypes.string.isRequired,
-  failed: PropTypes.bool,
-  success: PropTypes.bool,
+  text: PropTypes.string,
   clipboardable: PropTypes.bool
 }

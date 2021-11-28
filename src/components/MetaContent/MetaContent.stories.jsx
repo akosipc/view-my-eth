@@ -2,6 +2,8 @@ import React from 'react'
 
 import Link from 'next/link'
 import MetaContent from './MetaContent'
+import SuccessBlock from './SuccessBlock'
+import FailureBlock from './FailureBlock'
 
 const MetaContentStory = {
   title: 'Components/MetaContent',
@@ -18,19 +20,17 @@ export const Default = () => {
 
 export const successBlock = () => {
   return (
-    <MetaContent
-      text={ 'Success' }
-      success
-    />
+    <MetaContent>
+      <SuccessBlock/>
+    </MetaContent>
   )
 }
 
 export const failedBlock = () => {
   return (
-    <MetaContent
-      text={ 'Failed' }
-      failed
-    />
+    <MetaContent>
+      <FailureBlock/>
+    </MetaContent>
   )
 }
 

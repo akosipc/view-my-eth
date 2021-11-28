@@ -6,6 +6,8 @@ import MetaList from './MetaList'
 import MetaItem from '../MetaItem/MetaItem'
 import MetaLabel from '../MetaLabel/MetaLabel'
 import MetaContent from '../MetaContent/MetaContent'
+import SuccessBlock from '../MetaContent/SuccessBlock'
+import FailureBlock from '../MetaContent/FailureBlock'
 
 const MetaListStory = {
   title: 'Components/MetaList',
@@ -33,10 +35,20 @@ export const Default = () => {
           helper='The status of the transaction.'
         />
 
-        <MetaContent
-          text='success'
-          success
+        <MetaContent>
+          <SuccessBlock/>
+        </MetaContent>
+      </MetaItem>
+
+      <MetaItem>
+        <MetaLabel
+          text='Status'
+          helper='The status of the transaction.'
         />
+
+        <MetaContent>
+          <FailureBlock/>
+        </MetaContent>
       </MetaItem>
 
       <MetaItem>
