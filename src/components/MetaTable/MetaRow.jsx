@@ -20,7 +20,7 @@ const MetaRow = (props) => {
   }
 }
 
-const TransactionRow = ({ 
+export const TransactionRow = ({ 
   to,
   from,
   hash,

@@ -1,7 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import Pagination from './Pagination'
 import {
+  TableCaption,
   Table,
   Tbody,
   Thead,
@@ -9,14 +11,21 @@ import {
   Th
 } from '@chakra-ui/react'
 
-const MetaTable = ({ headers = [], children }) => {
+const MetaTable = ({ 
+  headers = [], 
+  pagination,
+  children 
+}) => {
   return (
     <Table size='sm'>
       <Thead>
         <Tr>
           {
             headers.map((header, index) => (
-              <Th key={ index }>
+              <Th 
+                key={ index }
+                textAlign={ headers.length - 1 === index ? 'right' : 'center' }
+              >
                 { header }
               </Th>
             ))
@@ -26,6 +35,12 @@ const MetaTable = ({ headers = [], children }) => {
       <Tbody>
         { children }
       </Tbody>
+
+      <TableCaption
+        align='center'
+      >
+        <Pagination { ...pagination }/>
+      </TableCaption>
     </Table>
   )
 }
@@ -33,5 +48,10 @@ const MetaTable = ({ headers = [], children }) => {
 export default MetaTable
 
 MetaTable.propTypes = {
-  headers: PropTypes.arrayOf(PropTypes.string)
+  headers: PropTypes.arrayOf(PropTypes.string),
+  pagination: PropTypes.shape({
+    totalPages: PropTypes.integer,
+    currentPage: PropTypes.integer,
+    onPageChange: PropTypes.func
+  })
 }

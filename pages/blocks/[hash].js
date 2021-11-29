@@ -18,6 +18,8 @@ import {
   Divider
 } from '@chakra-ui/react'
 
+const PER_PAGE = 8
+
 const Block = ({ hash }) => {
   const [currentPage, setCurrentPage] = useState(1)
   const { block, isLoading, isError } = fetchBlock(hash)
@@ -27,23 +29,6 @@ const Block = ({ hash }) => {
 
   return (
     <>
-      <Panel>
-        <PanelHeader title='Transactions'/>
-        <PanelBody>
-          <MetaTable headers={ ['Txn Hash', 'Block', 'Age', 'From', 'To', 'Value'] }>
-            {
-              block.transactions.map((tx) => (
-                <MetaRow 
-                  key={ tx.hash }
-                  contentType={ TRANSACTION_TYPE }
-                  { ...tx }
-                />
-              ))
-            }
-          </MetaTable>
-        </PanelBody>
-      </Panel>
-
       <Panel>
         <PanelHeader title={ `Block #${formatHexToDecimal(block.number)}` } />
         <PanelBody>
@@ -69,26 +54,6 @@ const Block = ({ hash }) => {
             <Divider my={ 4 } />
 
             <MetaItem>
-              <MetaLabel text='Difficulty'/>
-
-              <MetaContent text={ formatHexToDecimal(block.difficulty) } />
-            </MetaItem>
-
-            <MetaItem>
-              <MetaLabel text='Total Difficulty'/>
-
-              <MetaContent text={ formatHexToDecimal(block.totalDifficulty) } />
-            </MetaItem>
-
-            <MetaItem>
-              <MetaLabel text='Size'/>
-
-              <MetaContent text={ formatHexToDecimal(block.size) } />
-            </MetaItem>
-
-            <Divider my={ 4 } />
-
-            <MetaItem>
               <MetaLabel text='Gas Used'/>
               <MetaContent text={ formatHexToDecimal(block.gasUsed) } />
             </MetaItem>
@@ -98,6 +63,30 @@ const Block = ({ hash }) => {
               <MetaContent text={ formatHexToDecimal(block.gasLimit) } />
             </MetaItem>
           </MetaList>
+        </PanelBody>
+      </Panel>
+
+      <Panel>
+        <PanelHeader title='Transactions'/>
+        <PanelBody>
+          <MetaTable 
+            headers={ ['Txn Hash', 'Block', 'Age', 'From', 'To', 'Value'] }
+            pagination={{
+              totalPages: Math.round(block.transactions.length / PER_PAGE),
+              currentPage: currentPage,
+              onPageChange: (direction) => { setCurrentPage(currentPage + direction)}
+            }}
+          >
+            {
+              block.transactions.slice((currentPage * PER_PAGE - 7), currentPage * PER_PAGE + 1).map((tx) => (
+                <MetaRow 
+                  key={ tx.hash }
+                  contentType={ TRANSACTION_TYPE }
+                  { ...tx }
+                />
+              ))
+            }
+          </MetaTable>
         </PanelBody>
       </Panel>
     </>
