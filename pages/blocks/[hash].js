@@ -1,8 +1,11 @@
+import { useState } from 'react'
+
 import { fetchBlock } from '../../src/helpers/fetcher'
 
 import { PanelLoader } from '../../src/components/Loader/Loader'
 import { Panel, PanelHeader, PanelBody } from '../../src/components/Panel'
 import { MetaList, MetaItem, MetaLabel, MetaContent } from '../../src/components/MetaList'
+import { MetaTable, MetaRow, TRANSACTION_TYPE } from '../../src/components/MetaTable'
 
 import { formatHexToDecimal } from '../../src/helpers/ethers'
 
@@ -16,29 +19,30 @@ import {
 } from '@chakra-ui/react'
 
 const Block = ({ hash }) => {
+  const [currentPage, setCurrentPage] = useState(1)
   const { block, isLoading, isError } = fetchBlock(hash)
 
   if (isLoading) { return <PanelLoader panelTitle={ `Block #${formatHexToDecimal(hash)}` } /> }
   if (isError) { return '' }
 
-  console.log(block.transactions)
-
   return (
     <>
-      <Table>
-        <Thead>
-          <Tr>
-            <Th> Txn Hash </Th>
-            <Th> Age </Th>
-            <Th> From </Th>
-            <Th> To </Th>
-            <Th> Value </Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-        </Tbody>
-      </Table>
-
+      <Panel>
+        <PanelHeader title='Transactions'/>
+        <PanelBody>
+          <MetaTable headers={ ['Txn Hash', 'Block', 'Age', 'From', 'To', 'Value'] }>
+            {
+              block.transactions.map((tx) => (
+                <MetaRow 
+                  key={ tx.hash }
+                  contentType={ TRANSACTION_TYPE }
+                  { ...tx }
+                />
+              ))
+            }
+          </MetaTable>
+        </PanelBody>
+      </Panel>
 
       <Panel>
         <PanelHeader title={ `Block #${formatHexToDecimal(block.number)}` } />

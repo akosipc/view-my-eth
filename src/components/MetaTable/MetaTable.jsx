@@ -11,7 +11,7 @@ import {
 
 const MetaTable = ({ headers = [], children }) => {
   return (
-    <Table>
+    <Table size='sm'>
       <Thead>
         <Tr>
           {

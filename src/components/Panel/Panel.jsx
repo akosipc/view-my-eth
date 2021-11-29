@@ -7,6 +7,7 @@ import {
 const Panel = ({ children }) => {
   return (
     <Box
+      mb={ 4 }
       border='1px'
       boxShadow='md'
       borderColor='gray.300'
