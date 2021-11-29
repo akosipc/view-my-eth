@@ -1,11 +1,15 @@
-import { WalletProvider } from '../src/contexts/WalletContext'
 import { ChakraProvider } from '@chakra-ui/react'
+
+import Public from '../src/layouts/Public'
+import { WalletProvider } from '../src/contexts/WalletContext'
 
 const MyApp = ({ Component, pageProps }) => {
   return (
     <WalletProvider>
       <ChakraProvider>
-        <Component {...pageProps} />
+        <Public>
+          <Component {...pageProps} />
+        </Public>
       </ChakraProvider>
     </WalletProvider>
   )

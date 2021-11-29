@@ -31,7 +31,7 @@ const TransactionRow = ({
     <Tr>
       <Td> 
         <Link
-          href={ `transactions/${hash}` }
+          href={ `/transactions/${hash}` }
           color='blue.500'
         >
           <Text maxWidth={ 200 } isTruncated >
@@ -41,7 +41,7 @@ const TransactionRow = ({
       </Td>
       <Td> 
         <Link
-          href={ `blocks/${blockNumber}` }
+          href={ `/blocks/${blockNumber}` }
           color='blue.500'
         >
           { formatHexToDecimal(blockNumber) } 
@@ -50,7 +50,7 @@ const TransactionRow = ({
       <Td> </Td>
       <Td>
         <Link
-          href={ `wallets/${from}` }
+          href={ `/wallets/${from}` }
           color='blue.600'
         >
           <Text maxWidth={ 200 } isTruncated>
