@@ -12,6 +12,7 @@ export const fetchTransaction = (hash) => {
 
   return {
     isError: error,
+    txBlock: data?.txBlock,
     isLoading: !error && !data,
     transaction: data?.transaction,
     currentBlock: data?.latestBlock
@@ -28,13 +29,14 @@ export const fetchBlock = (hash) => {
   }
 }
 
-export const fetchLatestBlock = () => {
+export const fetchLatestBlocks = () => {
   const { data, error } = useSWR(`/api/etherscan/block/latest`, fetcher)
 
   return {
-    block: data?.latestBlock,
+    blocks: data?.blocks,
     isError: error,
     isLoading: !error && !data,
+    latestBlockNumber: data?.latestBlockNumber
   }
 }
 

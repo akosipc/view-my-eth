@@ -14,7 +14,7 @@ import { Panel, PanelHeader, PanelBody } from '../../src/components/Panel'
 import { MetaList, MetaItem, MetaLabel, MetaContent, SuccessBlock, FailureBlock } from '../../src/components/MetaList'
 
 const Transaction = ({ hash }) => {
-  const { transaction, currentBlock, isLoading, isError } = fetchTransaction(hash)
+  const { txBlock, transaction, currentBlock, isLoading, isError } = fetchTransaction(hash)
 
   if (isLoading) { return <PanelLoader panelTitle='Transaction Details'/> }
   if (isError) { return '' }
@@ -66,8 +66,10 @@ const Transaction = ({ hash }) => {
           <MetaItem>
             <MetaLabel text='Timestamp:' />
 
-            <MetaContent>
-            </MetaContent>
+            <MetaContent
+              text={ `${formatHexToWords(txBlock.timestamp)}` }
+              isDate
+            />
           </MetaItem>
 
           <Divider my={ 4 }/>

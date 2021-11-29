@@ -9,15 +9,46 @@ import {
 } from '@chakra-ui/react'
 
 import { formatHexToDecimal } from '../../helpers/ethers'
+import { formatHexToWords } from '../../helpers/web3'
 
 export const TRANSACTION_TYPE = 'transaction'
+export const BLOCK_TYPE = 'block'
 
 const MetaRow = (props) => {
   if (props.contentType === TRANSACTION_TYPE) {
-    return (
-      <TransactionRow { ...props } />
-    )
+    return <TransactionRow { ...props } />
+  } else if (props.contentType === BLOCK_TYPE) {
+    return <BlockRow { ...props }/>
   }
+}
+
+export const BlockRow = ({
+  number,
+  gasUsed,
+  gasLimit,
+  transactions,
+}) => {
+  return(
+    <Tr>
+      <Td> 
+        <Link
+          href={ `/blocks/${number}` }
+          color='blue.500'
+        >
+          <Text maxWidth={ 200 } isTruncated >
+            { formatHexToWords(number) } 
+          </Text>
+        </Link>
+      </Td>
+      <Td>
+        <Text textAlign="center">
+          { transactions.length }
+        </Text>
+      </Td>
+      <Td isNumeric> { formatHexToDecimal(gasUsed) } </Td>
+      <Td isNumeric> { formatHexToDecimal(gasLimit) } </Td>
+    </Tr>
+  )
 }
 
 export const TransactionRow = ({ 

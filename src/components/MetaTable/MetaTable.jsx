@@ -36,11 +36,15 @@ const MetaTable = ({
         { children }
       </Tbody>
 
-      <TableCaption
-        align='center'
-      >
-        <Pagination { ...pagination }/>
-      </TableCaption>
+
+      {
+        pagination &&
+          <TableCaption
+            align='center'
+          >
+            <Pagination { ...pagination }/>
+          </TableCaption>
+      }
     </Table>
   )
 }

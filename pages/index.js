@@ -1,50 +1,36 @@
 import Head from 'next/head'
 import Link from 'next/link'
 
-import { useState, useEffect } from 'react'
-import { useWallet } from '../src/contexts/WalletContext'
-import { connectWallet, fetchTransactions } from '../src/helpers/ethers'
+import { fetchLatestBlocks } from '../src/helpers/fetcher'
+
+import { PanelLoader } from '../src/components/Loader/Loader'
+import { Panel, PanelHeader, PanelBody } from '../src/components/Panel'
+import { MetaTable, MetaRow, BLOCK_TYPE } from '../src/components/MetaTable'
+
 
 const Home = () => {
-  const {walletAddress, setWalletAddress} = useWallet()
-  const {transactions, setTransactions} = useWallet()
-  
-  useEffect(() => {
-    let settingTransactions = async () => {
-      setTransactions(await fetchTransactions(walletAddress))
-    }
+  const { blocks, isError, isLoading } = fetchLatestBlocks()
 
-    settingTransactions()
-  }, [walletAddress, setTransactions])
-  
-  useEffect(() => {
-    let settingWalletAddress = async () => {
-      setWalletAddress(await connectWallet())
-    }
-
-    settingWalletAddress()
-  }, [setWalletAddress])
+  if (isLoading) { return <PanelLoader panelTitle="Latest Blocks" /> }
+  if (isError) { return '' }
 
   return (
-    <div>
-      { walletAddress }
+    <Panel>
+      <PanelHeader title={ 'Latest Blocks' }/>
 
-      <br/>
-
-      { transactions.length }
-
-      <ul>
-        { 
-          transactions.map((transaction, index) => (
-            <li key={ index }>
-              <Link href={ `transactions/${transaction.hash}` }>
-                { transaction.hash }
-              </Link>
-            </li>
-          )) 
-        }
-      </ul>
-    </div>
+      <PanelBody>
+        <MetaTable
+          headers={['Block Number', 'No. of Transactions', 'Gas Used', 'Gas Limit']}
+        >
+          { blocks.map((block, index) => (
+            <MetaRow
+              contentType={ BLOCK_TYPE }
+              { ...block }
+            />
+          ))}
+        </MetaTable>
+      </PanelBody>
+    </Panel>
   )
 }
 

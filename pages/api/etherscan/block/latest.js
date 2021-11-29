@@ -3,5 +3,21 @@ import { etherscanProvider } from '../../../../src/helpers/ethers'
 export default async function handler (req, res) {
   const provider = etherscanProvider()
 
-  res.status(200).json({latestBlock: await provider.perform("getBlockNumber") })
+  const latestBlockNumber = await provider.perform("getBlockNumber")
+
+  res.status(200).json({
+    latestBlockNumber: latestBlockNumber,
+    blocks: [ 
+      await provider.perform('getBlock', { blockTag: latestBlockNumber }),
+      await provider.perform('getBlock', { blockTag: latestBlockNumber }),
+      await provider.perform('getBlock', { blockTag: latestBlockNumber }),
+      await provider.perform('getBlock', { blockTag: latestBlockNumber }),
+      await provider.perform('getBlock', { blockTag: latestBlockNumber }),
+      await provider.perform('getBlock', { blockTag: latestBlockNumber }),
+      await provider.perform('getBlock', { blockTag: latestBlockNumber }),
+      await provider.perform('getBlock', { blockTag: latestBlockNumber }),
+      await provider.perform('getBlock', { blockTag: latestBlockNumber }),
+      await provider.perform('getBlock', { blockTag: latestBlockNumber })
+    ]
+  })
 }
