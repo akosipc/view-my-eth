@@ -17,7 +17,7 @@ export const fetchTransactions = async (walletAddress) => {
   }
 
   //Change me into an ENV var later
-  const provider = new ethers.providers.EtherscanProvider(null, 'A998AAAQK97YQW2CGGQ2HF4UN9VEI3ISVT')
+  const provider = new ethers.providers.EtherscanProvider(null, process.env.ETHERSCAN_API_KEY)
 
   return await provider.getHistory(walletAddress)
 }
@@ -25,4 +25,4 @@ export const fetchTransactions = async (walletAddress) => {
 export const formatHexToDecimal = (hex) => {
   return ethers.utils.formatEther(hex)
 }
-export const etherscanProvider = () => { return new ethers.providers.EtherscanProvider(null, 'A998AAAQK97YQW2CGGQ2HF4UN9VEI3ISVT') }
+export const etherscanProvider = () => { return new ethers.providers.EtherscanProvider(null, process.env.ETHERSCAN_API_KEY) }
