@@ -1,4 +1,5 @@
 import React from 'react'
+import Head from 'next/head'
 
 import Navbar from '../components/Navbar/Navbar'
 
@@ -10,6 +11,12 @@ import {
 const Public = ({ children }) => {
   return (
     <Box>
+      <Head>
+        <title>
+          ETH Blockchain Scanner - Just like Etherscan.io
+        </title>
+      </Head>
+
       <Navbar />
       <Container maxW='container.xl'>
         { children }

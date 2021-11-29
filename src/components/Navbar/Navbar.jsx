@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import ConnectWallet from '../ConnectWallet/ConnectWallet'
+
 import {
   Box,
   Flex,
@@ -28,24 +30,10 @@ const Navbar = ({
           justifyContent='space-between'
         >
           <Heading>
-            Scanner
+            ETH Blockchain Scanner
           </Heading>
 
-          <Button 
-            variant='solid'
-            isLoading={ isConnecting }
-            colorScheme='teal'
-            loadingText='Connecting'
-          >
-            <Text
-              isTruncated
-              maxWidth='140px'
-            >
-              {
-                walletAddress ? walletAddress : 'Connect Metamask'
-              }
-            </Text>
-          </Button>
+          <ConnectWallet/>
         </Flex>
       </Container>
     </Box>
