@@ -6,6 +6,7 @@ import ConnectWallet from '../ConnectWallet/ConnectWallet'
 import {
   Box,
   Flex,
+  Link,
   Text,
   Button,
   Heading,
@@ -33,7 +34,9 @@ const Navbar = ({
             as="h2"
             size="md"
           >
-            ETH Blockchain Scanner
+            <Link href={ '/' }>
+              ETH Blockchain Scanner
+            </Link>
           </Heading>
 
           <ConnectWallet/>

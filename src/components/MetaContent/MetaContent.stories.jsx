@@ -55,4 +55,13 @@ export const failedBlock = () => {
   )
 }
 
+export const TimeBlock = () => {
+  return (
+    <MetaContent
+      text={ `17032112` }
+      isDate
+    />
+  )
+}
+
 export default MetaContentStory

@@ -42,19 +42,22 @@ const Block = ({ hash }) => {
         <PanelBody>
           <MetaList>
             <MetaItem>
-              <MetaLabel text='Block Height'/>
+              <MetaLabel text='Block Height:'/>
 
               <MetaContent text={ `${formatHexToWords(block.number)}` } />
             </MetaItem>
 
             <MetaItem>
-              <MetaLabel text='Timestamps'/>
+              <MetaLabel text='Timestamp:'/>
 
-              <MetaContent text={ `${formatHexToWords(block.timestamp)}` } />
+              <MetaContent 
+                text={ `${formatHexToWords(block.timestamp)}` } 
+                isDate
+              />
             </MetaItem>
 
             <MetaItem>
-              <MetaLabel text='Transactions'/>
+              <MetaLabel text='Transactions: '/>
 
               <MetaContent text={ `${block.transactions.length} Transactions` }/>
             </MetaItem>
@@ -62,12 +65,12 @@ const Block = ({ hash }) => {
             <Divider my={ 4 } />
 
             <MetaItem>
-              <MetaLabel text='Gas Used'/>
+              <MetaLabel text='Gas Used:'/>
               <MetaContent text={ formatHexToDecimal(block.gasUsed) } />
             </MetaItem>
 
             <MetaItem>
-              <MetaLabel text='Gas Limit'/>
+              <MetaLabel text='Gas Limit:'/>
               <MetaContent text={ formatHexToDecimal(block.gasLimit) } />
             </MetaItem>
           </MetaList>

@@ -10,6 +10,7 @@ import {
 
 const MetaContent = ({ 
   text, 
+  isDate = false,
   clipboardable = false,
   children
 }) => {
@@ -40,7 +41,7 @@ const MetaContent = ({
       {
         children ? children : 
           <Text>
-            { text }
+            { isDate ? new Date(parseInt(text) * 1000).toString() : text }
           </Text>
       }
 
@@ -64,5 +65,6 @@ export default MetaContent
 
 MetaContent.propTypes = {
   text: PropTypes.string,
+  isDate: PropTypes.bool,
   clipboardable: PropTypes.bool
 }
