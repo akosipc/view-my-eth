@@ -7,6 +7,11 @@ import { MetaList, MetaItem, MetaLabel, MetaContent } from '../../src/components
 import { formatHexToDecimal } from '../../src/helpers/ethers'
 
 import {
+  Th,
+  Tr,
+  Table,
+  Thead,
+  Tbody,
   Divider
 } from '@chakra-ui/react'
 
@@ -16,63 +21,82 @@ const Block = ({ hash }) => {
   if (isLoading) { return <PanelLoader panelTitle={ `Block #${formatHexToDecimal(hash)}` } /> }
   if (isError) { return '' }
 
+  console.log(block.transactions)
+
   return (
-    <Panel>
-      <PanelHeader title={ `Block #${formatHexToDecimal(block.number)}` } />
-      <PanelBody>
-        <MetaList>
-          <MetaItem>
-            <MetaLabel text='Block Height'/>
+    <>
+      <Table>
+        <Thead>
+          <Tr>
+            <Th> Txn Hash </Th>
+            <Th> Age </Th>
+            <Th> From </Th>
+            <Th> To </Th>
+            <Th> Value </Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+        </Tbody>
+      </Table>
 
-            <MetaContent text={ formatHexToDecimal(block.number) } />
-          </MetaItem>
 
-          <MetaItem>
-            <MetaLabel text='Timestamps'/>
+      <Panel>
+        <PanelHeader title={ `Block #${formatHexToDecimal(block.number)}` } />
+        <PanelBody>
+          <MetaList>
+            <MetaItem>
+              <MetaLabel text='Block Height'/>
 
-            <MetaContent text={ formatHexToDecimal(block.timestamp) } />
-          </MetaItem>
+              <MetaContent text={ formatHexToDecimal(block.number) } />
+            </MetaItem>
 
-          <MetaItem>
-            <MetaLabel text='Transactions'/>
+            <MetaItem>
+              <MetaLabel text='Timestamps'/>
 
-            <MetaContent text={ `${block.transactions.length} Transactions` }/>
-          </MetaItem>
+              <MetaContent text={ formatHexToDecimal(block.timestamp) } />
+            </MetaItem>
 
-          <Divider my={ 4 } />
+            <MetaItem>
+              <MetaLabel text='Transactions'/>
 
-          <MetaItem>
-            <MetaLabel text='Difficulty'/>
+              <MetaContent text={ `${block.transactions.length} Transactions` }/>
+            </MetaItem>
 
-            <MetaContent text={ formatHexToDecimal(block.difficulty) } />
-          </MetaItem>
+            <Divider my={ 4 } />
 
-          <MetaItem>
-            <MetaLabel text='Total Difficulty'/>
+            <MetaItem>
+              <MetaLabel text='Difficulty'/>
 
-            <MetaContent text={ formatHexToDecimal(block.totalDifficulty) } />
-          </MetaItem>
+              <MetaContent text={ formatHexToDecimal(block.difficulty) } />
+            </MetaItem>
 
-          <MetaItem>
-            <MetaLabel text='Size'/>
+            <MetaItem>
+              <MetaLabel text='Total Difficulty'/>
 
-            <MetaContent text={ formatHexToDecimal(block.size) } />
-          </MetaItem>
+              <MetaContent text={ formatHexToDecimal(block.totalDifficulty) } />
+            </MetaItem>
 
-          <Divider my={ 4 } />
+            <MetaItem>
+              <MetaLabel text='Size'/>
 
-          <MetaItem>
-            <MetaLabel text='Gas Used'/>
-            <MetaContent text={ formatHexToDecimal(block.gasUsed) } />
-          </MetaItem>
+              <MetaContent text={ formatHexToDecimal(block.size) } />
+            </MetaItem>
 
-          <MetaItem>
-            <MetaLabel text='Gas Limit'/>
-            <MetaContent text={ formatHexToDecimal(block.gasLimit) } />
-          </MetaItem>
-        </MetaList>
-      </PanelBody>
-    </Panel>
+            <Divider my={ 4 } />
+
+            <MetaItem>
+              <MetaLabel text='Gas Used'/>
+              <MetaContent text={ formatHexToDecimal(block.gasUsed) } />
+            </MetaItem>
+
+            <MetaItem>
+              <MetaLabel text='Gas Limit'/>
+              <MetaContent text={ formatHexToDecimal(block.gasLimit) } />
+            </MetaItem>
+          </MetaList>
+        </PanelBody>
+      </Panel>
+    </>
   )
 }
 
