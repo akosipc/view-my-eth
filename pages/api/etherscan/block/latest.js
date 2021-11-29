@@ -8,15 +8,6 @@ export default async function handler (req, res) {
   res.status(200).json({
     latestBlockNumber: latestBlockNumber,
     blocks: [ 
-      await provider.perform('getBlock', { blockTag: latestBlockNumber }),
-      await provider.perform('getBlock', { blockTag: latestBlockNumber }),
-      await provider.perform('getBlock', { blockTag: latestBlockNumber }),
-      await provider.perform('getBlock', { blockTag: latestBlockNumber }),
-      await provider.perform('getBlock', { blockTag: latestBlockNumber }),
-      await provider.perform('getBlock', { blockTag: latestBlockNumber }),
-      await provider.perform('getBlock', { blockTag: latestBlockNumber }),
-      await provider.perform('getBlock', { blockTag: latestBlockNumber }),
-      await provider.perform('getBlock', { blockTag: latestBlockNumber }),
       await provider.perform('getBlock', { blockTag: latestBlockNumber })
     ]
   })

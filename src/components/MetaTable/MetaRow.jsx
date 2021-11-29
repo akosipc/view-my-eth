@@ -45,7 +45,11 @@ export const BlockRow = ({
           { transactions.length }
         </Text>
       </Td>
-      <Td isNumeric> { formatHexToDecimal(gasUsed) } </Td>
+      <Td> 
+        <Text textAlign="center">
+          { formatHexToDecimal(gasUsed) } 
+        </Text>
+      </Td>
       <Td isNumeric> { formatHexToDecimal(gasLimit) } </Td>
     </Tr>
   )

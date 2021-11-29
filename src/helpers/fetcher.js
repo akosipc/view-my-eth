@@ -1,8 +1,10 @@
 import axios from 'axios'
 import useSWR from 'swr'
 
+import { ethers } from 'ethers'
+
 const fetcher = async (url) => {
-  return axios({
+  return await axios({
     url: url
   }).then(res => { return res.data }).catch(res => { throw res.data })
 }
@@ -29,15 +31,12 @@ export const fetchBlock = (hash) => {
   }
 }
 
-export const fetchLatestBlocks = () => {
-  const { data, error } = useSWR(`/api/etherscan/block/latest`, fetcher)
+export const fetchLatestBlocks = async () => {
+  return await fetcher('/api/etherscan/block/latest')
+}
 
-  return {
-    blocks: data?.blocks,
-    isError: error,
-    isLoading: !error && !data,
-    latestBlockNumber: data?.latestBlockNumber
-  }
+export const fetchBlockByNumber = async (id) => {
+  return await fetcher(`api/etherscan/block/${ethers.utils.hexValue(id)}`)
 }
 
 export default fetcher
