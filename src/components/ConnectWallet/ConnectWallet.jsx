@@ -16,7 +16,7 @@ const ConnectWallet = () => {
     setConnecting(true)
     setWalletAddress(await connectWallet())
     setConnecting(false)
-  }, [walletAddress])
+  }, [setWalletAddress])
 
   return (
     <Button 

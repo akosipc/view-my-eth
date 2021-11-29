@@ -44,13 +44,13 @@ const Block = ({ hash }) => {
             <MetaItem>
               <MetaLabel text='Block Height'/>
 
-              <MetaContent text={ formatHexToWords(block.number) } />
+              <MetaContent text={ `${formatHexToWords(block.number)}` } />
             </MetaItem>
 
             <MetaItem>
               <MetaLabel text='Timestamps'/>
 
-              <MetaContent text={ formatHexToWords(block.timestamp) } />
+              <MetaContent text={ `${formatHexToWords(block.timestamp)}` } />
             </MetaItem>
 
             <MetaItem>
