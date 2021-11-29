@@ -8,6 +8,7 @@ import { MetaList, MetaItem, MetaLabel, MetaContent } from '../../src/components
 import { MetaTable, MetaRow, TRANSACTION_TYPE } from '../../src/components/MetaTable'
 
 import { formatHexToDecimal } from '../../src/helpers/ethers'
+import { formatHexToWords } from '../../src/helpers/web3'
 
 import {
   Th,
@@ -27,7 +28,7 @@ const Block = ({ hash }) => {
   if (isLoading) { 
     return (
       <>
-        <PanelLoader panelTitle={ `Block #${formatHexToDecimal(hash)}` } /> 
+        <PanelLoader panelTitle={ `Block #${formatHexToWords(hash)}` } /> 
         <PanelLoader panelTitle='Transactions' /> 
       </>
     )
@@ -37,19 +38,19 @@ const Block = ({ hash }) => {
   return (
     <>
       <Panel>
-        <PanelHeader title={ `Block #${formatHexToDecimal(block.number)}` } />
+        <PanelHeader title={ `Block #${formatHexToWords(block.number)}` } />
         <PanelBody>
           <MetaList>
             <MetaItem>
               <MetaLabel text='Block Height'/>
 
-              <MetaContent text={ formatHexToDecimal(block.number) } />
+              <MetaContent text={ formatHexToWords(block.number) } />
             </MetaItem>
 
             <MetaItem>
               <MetaLabel text='Timestamps'/>
 
-              <MetaContent text={ formatHexToDecimal(block.timestamp) } />
+              <MetaContent text={ formatHexToWords(block.timestamp) } />
             </MetaItem>
 
             <MetaItem>

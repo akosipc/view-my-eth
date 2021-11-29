@@ -15,7 +15,7 @@ import {
 const Pagination = ({
   totalPages,
   currentPage,
-  onPageChange
+  onPageChange = () => {}
 }) => {
   return (
     <Flex
@@ -53,9 +53,3 @@ const Pagination = ({
 }
 
 export default Pagination
-
-Pagination.propTypes = {
-  totalPages: PropTypes.integer,
-  currentPage: PropTypes.integer,
-  onPageChange: PropTypes.func
-}

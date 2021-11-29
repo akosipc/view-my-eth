@@ -7,6 +7,7 @@ import {
 
 import { fetchTransaction, fetchLatestBlock } from '../../src/helpers/fetcher'
 import { formatHexToDecimal } from '../../src/helpers/ethers'
+import { formatHexToWords } from '../../src/helpers/web3'
 
 import { PanelLoader } from '../../src/components/Loader/Loader'
 import { Panel, PanelHeader, PanelBody } from '../../src/components/Panel'
@@ -53,12 +54,11 @@ const Transaction = ({ hash }) => {
                 href={ `/blocks/${transaction.blockNumber}` }
                 color='blue.500'
               >
-                { formatHexToDecimal(transaction.blockNumber) }
+                { formatHexToWords(transaction.blockNumber) }
               </Link>
               &nbsp;
-              <Badge colorScheme='green'> 
-                { formatHexToDecimal(currentBlock) } 
-                Confirmations
+              <Badge colorScheme='teal'> 
+                { `${formatHexToWords(currentBlock) - formatHexToWords(transaction.blockNumber)} Confirmations` }
               </Badge>
             </MetaContent>
           </MetaItem>
