@@ -24,7 +24,14 @@ const Block = ({ hash }) => {
   const [currentPage, setCurrentPage] = useState(1)
   const { block, isLoading, isError } = fetchBlock(hash)
 
-  if (isLoading) { return <PanelLoader panelTitle={ `Block #${formatHexToDecimal(hash)}` } /> }
+  if (isLoading) { 
+    return (
+      <>
+        <PanelLoader panelTitle={ `Block #${formatHexToDecimal(hash)}` } /> 
+        <PanelLoader panelTitle='Transactions' /> 
+      </>
+    )
+  }
   if (isError) { return '' }
 
   return (

@@ -29,7 +29,10 @@ const Navbar = ({
           alignItems='center'
           justifyContent='space-between'
         >
-          <Heading>
+          <Heading
+            as="h2"
+            size="md"
+          >
             ETH Blockchain Scanner
           </Heading>
 
