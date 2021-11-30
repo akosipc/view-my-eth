@@ -81,7 +81,7 @@ const Block = ({ hash }) => {
         <PanelHeader title='Transactions'/>
         <PanelBody>
           <MetaTable 
-            headers={ ['Txn Hash', 'Block', 'Age', 'From', 'To', 'Value'] }
+            headers={ ['Txn Hash', 'Block', 'From', 'To', 'Value'] }
             pagination={{
               totalPages: Math.round(block.transactions.length / PER_PAGE),
               currentPage: currentPage,

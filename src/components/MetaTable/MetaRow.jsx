@@ -79,16 +79,15 @@ export const TransactionRow = ({
           href={ `/blocks/${blockNumber}` }
           color='blue.500'
         >
-          { formatHexToDecimal(blockNumber) } 
+          { formatHexToWords(blockNumber) } 
         </Link>
       </Td>
-      <Td> </Td>
       <Td>
         <Link
           href={ `/wallets/${from}` }
           color='blue.600'
         >
-          <Text maxWidth={ 200 } isTruncated>
+          <Text maxWidth={ 300 } isTruncated>
             { from } 
           </Text>
         </Link>
@@ -98,7 +97,7 @@ export const TransactionRow = ({
           href={ `wallets/${to}` }
           color='blue.600'
         >
-          <Text maxWidth={ 200 } isTruncated>
+          <Text maxWidth={ 300 } isTruncated>
           { to } 
           </Text>
         </Link>
