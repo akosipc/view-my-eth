@@ -1,9 +1,13 @@
+## ETH Blockchain Scanner
+
+[https://akosipc-ethereum-blockchain-scanner.vercel.app/](Production URL)
+
 ## Getting Started
 
 First, run the development server:
 
 ```bash
-yarn dev
+ETHERSCAN_API_KEY=<insert your etherscan api key> yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
